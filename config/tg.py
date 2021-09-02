@@ -1,0 +1,3 @@
+api_id = 4986933
+api_hash = "548747166f61ae4f18180159e8e214d3"
+bot_token = "1857617611:AAGfs1E4QcEawn2lD95Kr6Id2gNMJnU7dzc"
