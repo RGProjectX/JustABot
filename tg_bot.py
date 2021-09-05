@@ -48,17 +48,19 @@ async def flood_watch(_,message:Message):
             except Exception as e:
                 await message.reply_text(f'Error Encountered : {e}')
             try:
-                #Reset - Line 18
-                await reset(chat_id,user_id)
+                
                 #Increase Flood Count On Continuous Message
                 flooders[chat_id][user_id] +=1
-                if flooders[chat_id][user_id] > 5:
+                await message.reply_text(f'{mention} has flood count of {flooders[chat_id][user_id]}')
+                if flooders[chat_id][user_id] > 10:
                     await app.restrict_chat_member(chat_id,user_id,ChatPermissions(can_send_messages=False),int(time.time()+100))
                     await message.reply_text(f'Hold Your Horses {mention}')
                     flooders[chat_id][user_id] = 0
             except Exception as e:
                 flooders[chat_id][user_id] = 1
                 await message.reply_text(f'Error Encountered : {e} \nFlood Reset For ID : {user_id}')
+        #Reset - Line 18
+        await reset(chat_id,user_id)
     except Exception as e:
         print(e)
 
