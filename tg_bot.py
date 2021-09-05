@@ -78,11 +78,7 @@ async def update_rank(mention,user_id,rank_name,message:Message):
                 }
             )
             if updated.modified_count == 1:
-                role = serializeDict(collection.find_one({
-                    'tg_id':user_id
-                }))
-                role = role['role']
-                await message.reply_text(f'🎉{mention} just got promoted as {role} 🎉')
+                await message.reply_text(f'🎉{mention} just got promoted as {rank_name} 🎉')
 
 
 @app.on_message(filters.group
@@ -121,7 +117,7 @@ async def karma(_,message:Message):
         await message.reply_text(f'Karma Incremented Of {user_mention} \nCurrent Karma : {karma}')
         if karma == 10:
             await update_rank(user_mention,user_id,'Adventurer',message)
-        if karma == 20:
+        if karma == 15:
             await update_rank(user_mention,user_id,'Daredevil',message)
         if karma == 30:
             await update_rank(user_mention,user_id,'Veteran',message)
